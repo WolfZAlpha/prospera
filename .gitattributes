@@ -1,0 +1,2 @@
+*.mp4 filter=lfs diff=lfs merge=lfs -text
+client/src/assets/desktop-backgrounds/video-backgrounds/Pre-Loader/prospera-main-bg-1.mp4 filter=lfs diff=lfs merge=lfs -text

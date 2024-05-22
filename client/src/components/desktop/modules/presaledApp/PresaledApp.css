@@ -1,0 +1,10 @@
+/* client/src/components/desktop/modules/presaledApp/PresaledApp.css */
+button {
+    padding: 10px;
+    font-size: 16px;
+    background-color: #333;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  

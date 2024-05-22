@@ -1,0 +1,28 @@
+/* client/src/components/desktop/modules/documents/Documents.css */
+.doc-circle {
+    width: 100px;
+    height: 100px;
+    background-color: #333;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    margin: 20px auto;
+  }
+  
+  .doc-list {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .doc-list ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .doc-list li {
+    margin: 10px 0;
+  }
+  

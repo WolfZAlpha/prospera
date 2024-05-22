@@ -1,0 +1,17 @@
+/* client/src/components/desktop/modules/settings/Settings.css */
+.content {
+    padding: 20px;
+  }
+  
+  .content div {
+    margin-bottom: 10px;
+  }
+  
+  button {
+    padding: 10px;
+    background-color: #333;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  

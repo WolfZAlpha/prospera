@@ -1,0 +1,18 @@
+/* client/src/components/desktop/modules/terminal/Terminal.css */
+.terminal-output {
+    height: 300px;
+    overflow-y: auto;
+    background: black;
+    color: green;
+    padding: 10px;
+  }
+  
+  input {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background: black;
+    color: green;
+    font-family: monospace;
+  }
+  
