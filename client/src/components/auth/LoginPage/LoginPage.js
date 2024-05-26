@@ -1,10 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Card, Form, Button } from 'react-bootstrap';
 import './LoginPage.css';
 
 const LoginPage = ({ onLogin }) => {
   const [isSignUp, setIsSignUp] = useState(false);
-  const [showForm, setShowForm] = useState(true); // New state to manage form visibility
+  const [showForm, setShowForm] = useState(true); // Default to true for non-mobile
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 576) {
+        setShowForm(false); // Hide form on mobile
+      } else {
+        setShowForm(true); // Show form on larger screens
+      }
+    };
+
+    // Set initial state based on current window width
+    handleResize();
+
+    // Add event listener to handle window resize
+    window.addEventListener('resize', handleResize);
+
+    // Cleanup event listener on component unmount
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const [formData, setFormData] = useState({
     username: '',
