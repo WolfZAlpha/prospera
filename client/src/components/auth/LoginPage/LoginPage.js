@@ -4,6 +4,7 @@ import './LoginPage.css';
 
 const LoginPage = ({ onLogin }) => {
   const [isSignUp, setIsSignUp] = useState(false);
+  const [showForm, setShowForm] = useState(true); // New state to manage form visibility
 
   const [formData, setFormData] = useState({
     username: '',
@@ -56,12 +57,16 @@ const LoginPage = ({ onLogin }) => {
     setIsSignUp(!isSignUp);
   };
 
+  const toggleFormVisibility = () => {
+    setShowForm(!showForm);
+  };
+
   return (
     <div className="login-page-container">
       <Container fluid className="login-section">
         <Row className="d-flex align-items-center h-100">
           <Col>
-            <div className="box">
+            <div className={`box ${showForm ? '' : 'hide-form'}`}> {/* Conditionally add 'hide-form' class */}
               <Card className="text-white my-5 mx-auto login-card">
                 <Card.Body className="p-2 d-flex flex-column align-items-center mx-auto w-100">
                   {!isSignUp ? (
@@ -184,7 +189,7 @@ const LoginPage = ({ onLogin }) => {
             </div>
           </Col>
         </Row>
-        <button className="toggle-form-btn" onClick={() => setIsSignUp(!isSignUp)}>
+        <button className="toggle-form-btn" onClick={toggleFormVisibility}>
           <i className="fas fa-arrow-up"></i>
         </button>
       </Container>
