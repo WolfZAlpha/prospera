@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
@@ -6,14 +7,10 @@ const session = require('express-session');
 const passport = require('passport');
 const path = require('path');
 const helmet = require('helmet');
-const userRoutes = require('./routes/userRoutes');
-const dotenv = require('dotenv');
-require('./passportConfig'); // Require passport configuration
-
-dotenv.config(); // Load environment variables from .env file
+const authRoutes = require('./routes/auth');
 
 const app = express();
-const port = process.env.PORT || 5003;  // Changed fallback port to 5003
+const port = process.env.PORT || 5004;  // Changed fallback port to 5004
 
 // Middleware
 app.use(cors());
@@ -59,7 +56,7 @@ app.use(express.static(path.join(__dirname, 'public'), {
 }));
 
 // Routes
-app.use('/api/users', userRoutes);
+app.use('/api/users', authRoutes);
 
 // OAuth Routes
 app.get('/auth/twitter', passport.authenticate('twitter'));
@@ -73,7 +70,7 @@ app.get('/auth/twitter/callback',
 );
 
 // MongoDB connection
-mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(process.env.MONGO_URI)
     .then(() => console.log('MongoDB connected'))
     .catch(err => console.log('MongoDB connection error:', err));
 

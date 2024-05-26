@@ -4,40 +4,29 @@ import './LoginPage.css';
 
 const LoginPage = ({ onLogin }) => {
   const [isSignUp, setIsSignUp] = useState(false);
-  const [showForm, setShowForm] = useState(true); // Default to true for non-mobile
+  const [showForm, setShowForm] = useState(true);
 
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth < 576) {
-        setShowForm(false); // Hide form on mobile
+        setShowForm(false);
       } else {
-        setShowForm(true); // Show form on larger screens
+        setShowForm(true);
       }
     };
 
-    // Set initial state based on current window width
     handleResize();
 
-    // Add event listener to handle window resize
     window.addEventListener('resize', handleResize);
 
-    // Cleanup event listener on component unmount
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   const [formData, setFormData] = useState({
-    username: '',
     email: '',
     password: '',
     confirmPassword: '',
-    xAccount: '',
-    telegram: '',
-    arbitrumWallet: '',
-    btcWallet: '',
-    ethWallet: '',
-    solWallet: '',
-    usdtWallet: '',
-    usdcWallet: ''
+    arbitrumWallet: ''
   });
 
   const handleChange = (e) => {
@@ -60,10 +49,10 @@ const LoginPage = ({ onLogin }) => {
         body: JSON.stringify(formData),
       });
       const result = await response.json();
-      console.log('Server response:', result); // Debugging line
+      console.log('Server response:', result);
       if (response.ok) {
         onLogin();
-        window.location.href = '/desktop'; // Ensure this path is correct
+        window.location.href = '/desktop';
       } else {
         console.log(result.error);
       }
@@ -85,7 +74,7 @@ const LoginPage = ({ onLogin }) => {
       <Container fluid className="login-section">
         <Row className="d-flex align-items-center h-100">
           <Col>
-            <div className={`box ${showForm ? '' : 'hide-form'}`}> {/* Conditionally add 'hide-form' class */}
+            <div className={`box ${showForm ? '' : 'hide-form'}`}>
               <Card className="text-white my-5 mx-auto login-card">
                 <Card.Body className="p-2 d-flex flex-column align-items-center mx-auto w-100">
                   {!isSignUp ? (
@@ -129,60 +118,22 @@ const LoginPage = ({ onLogin }) => {
                       <p className="text-white-50 mb-2 center-text">Please enter your details to create an account!</p>
 
                       <Form onSubmit={handleSubmit} className="sign-up-form w-100">
-                        <Row>
-                          <Col md="6">
-                            <Form.Group className="mb-2">
-                              <Form.Label>Username</Form.Label>
-                              <Form.Control type="text" placeholder="Username" name="username" value={formData.username} onChange={handleChange} required />
-                            </Form.Group>
-                            <Form.Group className="mb-2">
-                              <Form.Label>Email</Form.Label>
-                              <Form.Control type="email" placeholder="Email" name="email" value={formData.email} onChange={handleChange} required />
-                            </Form.Group>
-                            <Form.Group className="mb-2">
-                              <Form.Label>X-Account</Form.Label>
-                              <Form.Control type="text" placeholder="X-Account" name="xAccount" value={formData.xAccount} onChange={handleChange} required />
-                            </Form.Group>
-                            <Form.Group className="mb-2">
-                              <Form.Label>Telegram</Form.Label>
-                              <Form.Control type="text" placeholder="Telegram" name="telegram" value={formData.telegram} onChange={handleChange} required />
-                            </Form.Group>
-                            <Form.Group className="mb-2">
-                              <Form.Label>Password</Form.Label>
-                              <Form.Control type="password" placeholder="Password" name="password" value={formData.password} onChange={handleChange} required />
-                            </Form.Group>
-                            <Form.Group className="mb-2">
-                              <Form.Label>Confirm Password</Form.Label>
-                              <Form.Control type="password" placeholder="Confirm Password" name="confirmPassword" value={formData.confirmPassword} onChange={handleChange} required />
-                            </Form.Group>
-                          </Col>
-                          <Col md="6">
-                            <Form.Group className="mb-2">
-                              <Form.Label>Arbitrum Wallet</Form.Label>
-                              <Form.Control type="text" placeholder="Arbitrum Wallet" name="arbitrumWallet" value={formData.arbitrumWallet} onChange={handleChange} required />
-                            </Form.Group>
-                            <Form.Group className="mb-2">
-                              <Form.Label>BTC Wallet (optional)</Form.Label>
-                              <Form.Control type="text" placeholder="BTC Wallet" name="btcWallet" value={formData.btcWallet} onChange={handleChange} />
-                            </Form.Group>
-                            <Form.Group className="mb-2">
-                              <Form.Label>ETH Wallet (optional)</Form.Label>
-                              <Form.Control type="text" placeholder="ETH Wallet" name="ethWallet" value={formData.ethWallet} onChange={handleChange} />
-                            </Form.Group>
-                            <Form.Group className="mb-2">
-                              <Form.Label>SOL Wallet (optional)</Form.Label>
-                              <Form.Control type="text" placeholder="SOL Wallet" name="solWallet" value={formData.solWallet} onChange={handleChange} />
-                            </Form.Group>
-                            <Form.Group className="mb-2">
-                              <Form.Label>USDT Wallet (optional)</Form.Label>
-                              <Form.Control type="text" placeholder="USDT Wallet" name="usdtWallet" value={formData.usdtWallet} onChange={handleChange} />
-                            </Form.Group>
-                            <Form.Group className="mb-2">
-                              <Form.Label>USDC Wallet (optional)</Form.Label>
-                              <Form.Control type="text" placeholder="USDC Wallet" name="usdcWallet" value={formData.usdcWallet} onChange={handleChange} />
-                            </Form.Group>
-                          </Col>
-                        </Row>
+                        <Form.Group className="mb-2">
+                          <Form.Label>Email</Form.Label>
+                          <Form.Control type="email" placeholder="Email" name="email" value={formData.email} onChange={handleChange} required />
+                        </Form.Group>
+                        <Form.Group className="mb-2">
+                          <Form.Label>Password</Form.Label>
+                          <Form.Control type="password" placeholder="Password" name="password" value={formData.password} onChange={handleChange} required />
+                        </Form.Group>
+                        <Form.Group className="mb-2">
+                          <Form.Label>Confirm Password</Form.Label>
+                          <Form.Control type="password" placeholder="Confirm Password" name="confirmPassword" value={formData.confirmPassword} onChange={handleChange} required />
+                        </Form.Group>
+                        <Form.Group className="mb-2">
+                          <Form.Label>Arbitrum Wallet</Form.Label>
+                          <Form.Control type="text" placeholder="Arbitrum Wallet" name="arbitrumWallet" value={formData.arbitrumWallet} onChange={handleChange} required />
+                        </Form.Group>
                         <Button variant="dark" type="submit" className="sign-up-btn w-100">
                           Sign Up
                         </Button>
@@ -198,7 +149,7 @@ const LoginPage = ({ onLogin }) => {
                       </div>
 
                       <div>
-                        <p className="disclaimer">* Disclaimer: Please import optional wallet addresses only if you do not wish to use the bridge. This allows us to efficiently track transactions and ensure that everyone receives the correct amount of tokens. * Thank you for your cooperation!</p>
+                        <p className="disclaimer">* Disclaimer: Please import optional wallet addresses only if you do not wish to use the dApp to purchase ICO tokens. This allows us to efficiently track transactions and ensure that everyone receives the correct amount of tokens. * Thank you for your cooperation!</p>
                         <p className="mb-0 center-text">Already have an account? <a href="#!" className="text-white-50 fw-bold" onClick={toggleSignUp}>Log In</a></p>
                       </div>
                     </>
