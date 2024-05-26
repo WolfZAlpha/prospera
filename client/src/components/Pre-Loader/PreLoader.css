@@ -23,7 +23,7 @@
   object-fit: cover;
   z-index: -1;
   transform: translate(-50%, -50%);
-  opacity: 0.45;
+  opacity: 0.55;
 }
 
 .preloader-container {
@@ -182,4 +182,27 @@
   8% { opacity: 1; }
   70% { opacity: 0.7; }
   100% { opacity: 1; }
+}
+
+/* Add media queries for mobile screens */
+@media (max-width: 576px) {
+  .preloader-container {
+    padding: 10px;
+  }
+
+  .logo {
+    max-height: 30%;
+    margin-top: 10px;
+  }
+
+  .background-image {
+    bottom: 80px;
+    height: 40%;
+  }
+
+  .glowing-btn {
+    margin-bottom: 30px;
+    font-size: 1.2em;
+    padding: 0.1em 0.3em;
+  }
 }
