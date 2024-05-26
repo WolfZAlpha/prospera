@@ -4,7 +4,7 @@ import './LoginPage.css';
 
 const LoginPage = ({ onLogin }) => {
   const [isSignUp, setIsSignUp] = useState(false);
-  const [showForm, setShowForm] = useState(false);
+  const [showForm, setShowForm] = useState(false); // Ensure form is hidden by default
 
   const [formData, setFormData] = useState({
     username: '',
