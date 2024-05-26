@@ -8,13 +8,17 @@ const User = require('../models/User');
 router.post('/register', async (req, res) => {
   const { email, password, confirmPassword, arbitrumWallet } = req.body;
 
+  console.log('Received registration data:', req.body); // Debugging line
+
   if (password !== confirmPassword) {
+    console.log('Passwords do not match'); // Debugging line
     return res.status(400).json({ error: 'Passwords do not match' });
   }
 
   try {
     const userExists = await User.findOne({ email });
     if (userExists) {
+      console.log('User already exists'); // Debugging line
       return res.status(400).json({ error: 'User already exists' });
     }
 
@@ -35,6 +39,7 @@ router.post('/register', async (req, res) => {
 
     res.status(201).json({ message: 'User Created Successfully', token });
   } catch (err) {
+    console.error('Server error:', err); // Debugging line
     res.status(500).json({ error: 'Server error' });
   }
 });
@@ -60,6 +65,7 @@ router.post('/login', async (req, res) => {
 
     res.status(200).json({ token });
   } catch (err) {
+    console.error('Server error:', err); // Debugging line
     res.status(500).json({ error: 'Server error' });
   }
 });

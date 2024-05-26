@@ -38,6 +38,7 @@ const LoginPage = ({ onLogin }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const endpoint = isSignUp ? '/api/users/register' : '/api/users/login';
+    console.log('Submitting form data:', formData); // Debugging line
     try {
       const response = await fetch(endpoint, {
         method: 'POST',
@@ -47,11 +48,12 @@ const LoginPage = ({ onLogin }) => {
         body: JSON.stringify(formData),
       });
       const result = await response.json();
+      console.log('Server response:', result); // Debugging line
       if (response.ok) {
         onLogin();
         window.location.href = '/desktop';
       } else {
-        console.log(result.error);
+        console.log('Error:', result.error);
       }
     } catch (error) {
       console.error('Error submitting form:', error);
