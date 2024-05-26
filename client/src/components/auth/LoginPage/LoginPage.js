@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Card, Form, Button } from 'react-bootstrap';
 import './LoginPage.css';
-import EvilFace1Animation from '../../../assets/desktop-backgrounds/video-backgrounds/LoginPage/EvilFace1_animation.mp4';
+import EvilFace1Animation from '../../../assets/desktop-backgrounds/video-backgrounds/LogInPage/EvilFace1_animation.mp4';
 
 const LoginPage = ({ onLogin }) => {
   const [isSignUp, setIsSignUp] = useState(false);
