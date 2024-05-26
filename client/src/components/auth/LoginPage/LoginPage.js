@@ -1,11 +1,9 @@
-// LoginPage.js
 import React, { useState } from 'react';
 import { Container, Row, Col, Card, Form, Button } from 'react-bootstrap';
 import './LoginPage.css';
 
 const LoginPage = ({ onLogin }) => {
   const [isSignUp, setIsSignUp] = useState(false);
-  const [showForm, setShowForm] = useState(false); // Ensure form is hidden by default
 
   const [formData, setFormData] = useState({
     username: '',
@@ -42,9 +40,10 @@ const LoginPage = ({ onLogin }) => {
         body: JSON.stringify(formData),
       });
       const result = await response.json();
+      console.log('Server response:', result); // Debugging line
       if (response.ok) {
         onLogin();
-        window.location.href = '/desktop';
+        window.location.href = '/desktop'; // Ensure this path is correct
       } else {
         console.log(result.error);
       }
@@ -57,17 +56,13 @@ const LoginPage = ({ onLogin }) => {
     setIsSignUp(!isSignUp);
   };
 
-  const toggleForm = () => {
-    setShowForm(!showForm);
-  };
-
   return (
     <div className="login-page-container">
       <Container fluid className="login-section">
         <Row className="d-flex align-items-center h-100">
           <Col>
             <div className="box">
-              <Card className={`text-white my-5 mx-auto login-card ${showForm ? '' : 'hide-form'}`}>
+              <Card className="text-white my-5 mx-auto login-card">
                 <Card.Body className="p-2 d-flex flex-column align-items-center mx-auto w-100">
                   {!isSignUp ? (
                     <>
@@ -189,12 +184,12 @@ const LoginPage = ({ onLogin }) => {
             </div>
           </Col>
         </Row>
-        <button className="toggle-form-btn" onClick={toggleForm}>
+        <button className="toggle-form-btn" onClick={() => setIsSignUp(!isSignUp)}>
           <i className="fas fa-arrow-up"></i>
         </button>
       </Container>
     </div>
   );
-};
+}
 
 export default LoginPage;
