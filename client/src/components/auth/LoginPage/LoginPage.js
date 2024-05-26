@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Card, Form, Button } from 'react-bootstrap';
 import './LoginPage.css';
+import EvilFace1Animation from '../../../assets/desktop-backgrounds/video-backgrounds/LoginPage/EvilFace1_animation.mp4';
 
 const LoginPage = ({ onLogin }) => {
   const [isSignUp, setIsSignUp] = useState(false);
@@ -82,6 +83,10 @@ const LoginPage = ({ onLogin }) => {
 
   return (
     <div className="login-page-container">
+      <video autoPlay muted loop id="background-video">
+        <source src={EvilFace1Animation} type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
       <Container fluid className="login-section">
         <Row className="d-flex align-items-center h-100">
           <Col>
