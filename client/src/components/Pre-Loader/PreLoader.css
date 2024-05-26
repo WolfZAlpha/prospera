@@ -47,11 +47,11 @@
 }
 
 .logo {
-  max-height: 40%;
+  max-height: 30%;
   width: auto;
   z-index: 1;
   animation: rotate-counterclockwise 2s linear infinite;
-  margin-top: 30px;
+  margin-top: 20px;
 }
 
 @keyframes rotate-counterclockwise {
@@ -64,7 +64,7 @@
 }
 
 .glowing-btn {
-  margin-bottom: 70px;
+  margin-bottom: 50px;
   position: relative;
   color: var(--glow-color);
   cursor: pointer;
@@ -191,7 +191,7 @@
   }
 
   .logo {
-    max-height: 30%;
+    max-height: 25%;
     margin-top: 10px;
   }
 
@@ -201,7 +201,7 @@
   }
 
   .glowing-btn {
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     font-size: 1.2em;
     padding: 0.1em 0.3em;
   }

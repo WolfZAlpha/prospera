@@ -45,17 +45,11 @@ const PreLoader = ({ onComplete }) => {
       });
     }
 
-    // Automatically remove the preloader if not done so by user after 30 seconds (to prevent infinite loading)
-    const timeout = setTimeout(() => {
-      onComplete();
-    }, 30000);
-
     return () => {
       document.removeEventListener('contextmenu', event => event.preventDefault());
       document.removeEventListener('keydown', handleKeyDown);
-      clearTimeout(timeout);
     };
-  }, [onComplete]);
+  }, []);
 
   return (
     <div className="preloader-container">
