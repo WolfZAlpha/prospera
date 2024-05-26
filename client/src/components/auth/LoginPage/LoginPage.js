@@ -16,9 +16,7 @@ const LoginPage = ({ onLogin }) => {
     };
 
     handleResize();
-
     window.addEventListener('resize', handleResize);
-
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
@@ -49,7 +47,6 @@ const LoginPage = ({ onLogin }) => {
         body: JSON.stringify(formData),
       });
       const result = await response.json();
-      console.log('Server response:', result);
       if (response.ok) {
         onLogin();
         window.location.href = '/desktop';
@@ -81,24 +78,20 @@ const LoginPage = ({ onLogin }) => {
                     <>
                       <h2 className="fw-bold mb-2 text-uppercase center-text">Login</h2>
                       <p className="text-white-50 mb-2 center-text">Please enter your login and password!</p>
-
                       <Form onSubmit={handleSubmit} className="w-100">
                         <Form.Group className="mb-2">
                           <Form.Label>Email address</Form.Label>
                           <Form.Control type="email" placeholder="Enter email" name="email" value={formData.email} onChange={handleChange} required />
                         </Form.Group>
-
                         <Form.Group className="mb-2">
                           <Form.Label>Password</Form.Label>
                           <Form.Control type="password" placeholder="Password" name="password" value={formData.password} onChange={handleChange} required />
                         </Form.Group>
-
                         <p className="small mb-2 center-text"><a className="text-white-50" href="#!">Forgot password?</a></p>
                         <Button variant="dark" type="submit" className="login-btn w-100">
                           Login
                         </Button>
                       </Form>
-
                       <div className="d-flex flex-row mt-2 mb-2 justify-content-center">
                         <Button variant="link" className="text-white">
                           <i className="fab fa-twitter"></i>
@@ -107,7 +100,6 @@ const LoginPage = ({ onLogin }) => {
                           Login with Twitter
                         </Button>
                       </div>
-
                       <div>
                         <p className="mb-0 center-text">Don't have an account? <a href="#!" className="text-white-50 fw-bold" onClick={toggleSignUp}>Sign Up</a></p>
                       </div>
@@ -116,7 +108,6 @@ const LoginPage = ({ onLogin }) => {
                     <>
                       <h2 className="fw-bold mb-2 text-uppercase center-text">Sign Up</h2>
                       <p className="text-white-50 mb-2 center-text">Please enter your details to create an account!</p>
-
                       <Form onSubmit={handleSubmit} className="sign-up-form w-100">
                         <Form.Group className="mb-2">
                           <Form.Label>Email</Form.Label>
@@ -138,7 +129,6 @@ const LoginPage = ({ onLogin }) => {
                           Sign Up
                         </Button>
                       </Form>
-
                       <div className="d-flex flex-row mt-2 mb-2 justify-content-center">
                         <Button variant="link" className="text-white">
                           <i className="fab fa-twitter"></i>
@@ -147,7 +137,6 @@ const LoginPage = ({ onLogin }) => {
                           Sign Up with Twitter
                         </Button>
                       </div>
-
                       <div>
                         <p className="disclaimer">* Disclaimer: Please import optional wallet addresses only if you do not wish to use the dApp to purchase ICO tokens. This allows us to efficiently track transactions and ensure that everyone receives the correct amount of tokens. * Thank you for your cooperation!</p>
                         <p className="mb-0 center-text">Already have an account? <a href="#!" className="text-white-50 fw-bold" onClick={toggleSignUp}>Log In</a></p>
