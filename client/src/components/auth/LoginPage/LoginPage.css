@@ -18,6 +18,7 @@ body {
   width: auto;
   height: auto;
   z-index: -1;
+  background: no-repeat center center fixed;
   background-size: cover;
 }
 
@@ -39,11 +40,11 @@ body {
 }
 
 .login-card {
-  background: transparent !important; /* Fully transparent background */
+  background: rgba(0, 0, 0, 0.6) !important; /* Semi-transparent background for better readability */
   border-radius: 1rem;
   max-width: 600px; /* Adjusted width */
   padding: 1.5rem;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: none;
 }
 
 .text-white-50 {
