@@ -8,11 +8,7 @@ const LoginPage = ({ onLogin }) => {
 
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth < 576) {
-        setShowForm(false);
-      } else {
-        setShowForm(true);
-      }
+      setShowForm(window.innerWidth >= 576);
     };
 
     handleResize();
@@ -37,7 +33,7 @@ const LoginPage = ({ onLogin }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const endpoint = isSignUp ? '/api/users/register' : '/api/users/login';
+    const endpoint = isSignUp ? '/api/auth/signup' : '/api/auth/signin';
     console.log('Submitting form data:', formData); // Debugging line
     try {
       const response = await fetch(endpoint, {
@@ -53,7 +49,7 @@ const LoginPage = ({ onLogin }) => {
         onLogin();
         window.location.href = '/desktop';
       } else {
-        console.log('Error:', result.error);
+        console.error('Error:', result.error || result.message);
       }
     } catch (error) {
       console.error('Error submitting form:', error);
@@ -140,7 +136,6 @@ const LoginPage = ({ onLogin }) => {
                         </Button>
                       </div>
                       <div>
-                        <p className="disclaimer">* Disclaimer: Please import optional wallet addresses only if you do not wish to use the dApp to purchase ICO tokens. This allows us to efficiently track transactions and ensure that everyone receives the correct amount of tokens. * Thank you for your cooperation!</p>
                         <p className="mb-0 center-text">Already have an account? <a href="#!" className="text-white-50 fw-bold" onClick={toggleSignUp}>Log In</a></p>
                       </div>
                     </>
