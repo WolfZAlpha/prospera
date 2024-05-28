@@ -7,10 +7,18 @@ const session = require('express-session');
 const passport = require('passport');
 const path = require('path');
 const helmet = require('helmet');
-const authRoutes = require('./routes/auth');
+
+// Clear require cache
+Object.keys(require.cache).forEach(function(key) {
+  delete require.cache[key];
+});
+
+// Importing routes
+const authRoutes = require('./routes/auth.routes');
+const userRoutes = require('./routes/user.routes');
 
 const app = express();
-const port = process.env.PORT || 5004;  // Changed fallback port to 5004
+const port = process.env.PORT || 5005;  // Changed fallback port to 5005
 
 // Middleware
 app.use(cors());
@@ -56,7 +64,8 @@ app.use(express.static(path.join(__dirname, 'public'), {
 }));
 
 // Routes
-app.use('/api/users', authRoutes);
+app.use('/api/auth', authRoutes); // Corrected route path for auth
+app.use('/api/users', userRoutes); // Added user routes
 
 // OAuth Routes
 app.get('/auth/twitter', passport.authenticate('twitter'));
@@ -70,9 +79,15 @@ app.get('/auth/twitter/callback',
 );
 
 // MongoDB connection
-mongoose.connect(process.env.MONGO_URI)
-    .then(() => console.log('MongoDB connected'))
-    .catch(err => console.log('MongoDB connection error:', err));
+mongoose.connect(process.env.MONGO_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+})
+.then(() => console.log('MongoDB connected'))
+.catch(err => {
+  console.error('MongoDB connection error:', err);
+  process.exit(1); // Exit the process with error code
+});
 
 // Sample route
 app.get('/', (req, res) => {

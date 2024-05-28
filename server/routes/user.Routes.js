@@ -1,8 +1,18 @@
-const express = require('express');
-const { registerUser, loginUser } = require('../controllers/userController');
-const router = express.Router();
+const { authJwt } = require('../middleware');
+const controller = require('../controllers/user.controller');
 
-router.post('/register', registerUser);
-router.post('/login', loginUser);
+module.exports = function(app) {
+  app.use(function(req, res, next) {
+    res.header(
+      'Access-Control-Allow-Headers',
+      'x-access-token, Origin, Content-Type, Accept'
+    );
+    next();
+  });
 
-module.exports = router;
+  app.get('/api/test/all', controller.allAccess);
+
+  app.get('/api/test/user', [authJwt.verifyToken], controller.userBoard);
+
+  app.get('/api/test/admin', [authJwt.verifyToken], controller.adminBoard);
+};
